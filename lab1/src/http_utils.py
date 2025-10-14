@@ -1,10 +1,8 @@
-import datetime
 import email.utils
 import os
 import urllib.parse
 from typing import Tuple, Optional
 
-# --- MIME TYPES ---
 ALLOWED_MIME = {
     ".html": "text/html; charset=utf-8",
     ".htm":  "text/html; charset=utf-8",
