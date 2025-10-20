@@ -119,7 +119,7 @@ Output:
 [client] saved PNG -> ~/Downloads/image.png
 ```
 
-work with any supported file type
+> Works with any supported file type
 
 ### 8. Directory Listing (Subdirectory)
 
