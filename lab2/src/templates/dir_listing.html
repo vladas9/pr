@@ -1,0 +1,58 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Index of {{path}}</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 1em;
+      color: #222;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    li {
+      border-bottom: 1px solid #eee;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      transition: background 0.15s;
+    }
+    li:last-child { border-bottom: none; }
+    li:hover { background: #fafafa; }
+    a {
+      color: #0078d7;
+      text-decoration: none;
+      flex: 1;
+    }
+    .dir::before {
+      content: "📁";
+      margin-right: 10px;
+    }
+    .file::before {
+      content: "📄";
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Index of {{path}}</h1>
+  <ul>
+    {{items}}
+  </ul>
+</body>
+</html>
