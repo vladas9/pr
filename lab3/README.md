@@ -601,6 +601,20 @@ The simulation includes specific concurrent scenarios:
 
 ---
 
+## Web Interface Preview
+
+![Web Interface](assets/web_page.png)
+
+The interface includes:
+- Server URL field
+- Polling/Watching mode selector
+- A Play button
+- Interactive grid of cards
+- Cards you control are highlighted in yellow
+- Replace-card form at the bottom
+
+---
+
 ## Conclusion
 
 In conclusion, this laboratory work successfully demonstrates the implementation of a fully-featured concurrent multiplayer Memory Scramble game using TypeScript's promise-based asynchronous model. The project achieves complete functionality across all five problem requirements: a robust Board ADT with comprehensive game logic, seamless web server integration, full concurrent player support with proper waiting mechanisms using `Promise.withResolvers()`, a map function that maintains pairwise consistency during transformations, and a watch mechanism for real-time notifications. All 11 gameplay rules (1-A through 3-B) are correctly implemented with proper deadlock prevention strategies.
