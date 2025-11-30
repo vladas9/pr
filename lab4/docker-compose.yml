@@ -1,0 +1,88 @@
+version: '3.8'
+
+x-healthcheck: &default-healthcheck
+  test: ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"]
+  interval: 5s
+  timeout: 3s
+  retries: 10
+  start_period: 5s
+
+x-follower-service: &follower-template
+  build:
+    context: ./app
+    dockerfile: Dockerfile
+  env_file:
+    - .env
+  environment:
+    - ROLE=${FOLLOWER_ROLE}
+    - PORT=${FOLLOWER_PORT}
+  networks:
+    - kv-network
+  healthcheck: *default-healthcheck
+
+services:
+  test-runner:
+    build:
+      context: ./tests
+      dockerfile: Dockerfile.test
+    container_name: kv-test-runner
+    depends_on:
+      leader:
+        condition: service_healthy
+      follower-1:
+        condition: service_healthy
+      follower-2:
+        condition: service_healthy
+      follower-3:
+        condition: service_healthy
+      follower-4:
+        condition: service_healthy
+      follower-5:
+        condition: service_healthy
+    networks:
+      - kv-network
+    volumes:
+      - ./test-results:/app/test-results
+
+  leader:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: kv-leader
+    env_file:
+      - .env
+    environment:
+      - ROLE=${LEADER_ROLE}
+      - PORT=${LEADER_PORT}
+      - WRITE_QUORUM=${WRITE_QUORUM}
+      - MIN_DELAY=${MIN_DELAY}
+      - MAX_DELAY=${MAX_DELAY}
+      - FOLLOWER_URLS=http://follower-1:8000,http://follower-2:8000,http://follower-3:8000,http://follower-4:8000,http://follower-5:8000
+    networks:
+      - kv-network
+    healthcheck: *default-healthcheck
+
+  follower-1:
+    <<: *follower-template
+    container_name: kv-follower-1
+
+  follower-2:
+    <<: *follower-template
+    container_name: kv-follower-2
+
+  follower-3:
+    <<: *follower-template
+    container_name: kv-follower-3
+
+  follower-4:
+    <<: *follower-template
+    container_name: kv-follower-4
+
+  follower-5:
+    <<: *follower-template
+    container_name: kv-follower-5
+
+networks:
+  kv-network:
+    driver: bridge
+    name: kvstore-net
