@@ -5,6 +5,18 @@
 ### Author: Amza Vladislav
 
 ---
+## Contents
+1. [Introduction](#introduction)  
+2. [Fundamental Ideas](#fundamental-ideas)  
+3. [System Design](#system-design)  
+4. [Containerization & Deployment](#containerization--deployment)  
+5. [Internal Logic & Algorithms](#internal-logic--algorithms)  
+6. [HTTP API](#http-api)  
+7. [Testing Methodology](#testing-methodology)  
+8. [Measured Performance](#measured-performance)  
+9. [Final Remarks](#final-remarks)  
+10. [Bibliography](#bibliography)
+---
 
 
 ## Introduction
